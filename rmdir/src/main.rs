@@ -2,8 +2,6 @@ use std::io;
 use std::io::Error;
 
 use clap::Parser;
-use env_logger::Env;
-use log::debug;
 #[derive(Parser, Debug)]
 #[command(
     author = "Mason Hall",

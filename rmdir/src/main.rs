@@ -24,10 +24,7 @@ struct Args {
     reverse: bool,
 }
 fn main() -> io::Result<()> {
-    let env = Env::default().filter_or("RUST_LOG", "error");
-    env_logger::init_from_env(env);
     let args = Args::parse();
-    debug!("{:?}", args);
 
     if args.paths.is_empty() {
         eprintln!("No directories given.");

@@ -52,13 +52,14 @@ fn rmdir(path_names: Vec<String>, verbose: bool, recursive: bool) -> io::Result<
                 let len = path.len();
                 for (i, &item) in path.as_bytes().iter().rev().enumerate() {
                     if item == b'/' {
-                        match remove_path(path[..(len - i - 1)].to_string()) {
+                        let partial_path = &path[..(len - i - 1)];
+                        match remove_path(partial_path.to_owned()) {
                             Err(e) => {
-                                eprintln!("rmdir: {}: {}", &path[..(len - i - 1)], e);
+                                eprintln!("rmdir: {}: {}", partial_path, e);
                             }
                             _ => {
                                 if verbose {
-                                    println!("Removed {}", &path[..(len - i - 1)]);
+                                    println!("Removed {}", partial_path);
                                 }
                             }
                         }
